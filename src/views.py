@@ -1,13 +1,11 @@
 from flask import jsonify
 from src import app
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+from datetime import datetime
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    health_status = {'status': 'OK'}
+    current_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    health_status = {'status': 'OK', 'date': current_date}
     return jsonify(health_status)
 
 if __name__ == '__main__':
